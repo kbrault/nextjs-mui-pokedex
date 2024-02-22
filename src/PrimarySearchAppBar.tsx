@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 
-
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -58,7 +57,6 @@ const appBarColor = createTheme({
     },
 });
 
-
 export default function SearchAppBar() {
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -69,7 +67,8 @@ export default function SearchAppBar() {
                             variant="h6"
                             noWrap
                             component="div"
-                            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
+                            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+>
                             MUI
                         </Typography>
                         <Search>
