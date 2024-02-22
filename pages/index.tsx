@@ -21,15 +21,12 @@ export default function Home() {
   const [books, setBooks] = useState<Book[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [page, setPage] = useState<number>(1);
-  const totalPages = 2; // New state to track total pages
+  const [totalPages] = useState<number>(2) // New state to track total pages
 
-  const buttonColor = createTheme({
-    palette: {
-      primary: {
-        main: '#FF0000',
-      },
-    },
-  });
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+    setPage(1); // Reset page number when searching
+  };
 
   const fetchBooks = async () => {
     try {
@@ -49,7 +46,7 @@ export default function Home() {
 
   return (
     <>
-      <PrimarySearchAppBar />
+      <PrimarySearchAppBar handleSearchChange={handleSearchChange} />
       <Container maxWidth="xl" sx={{ marginBottom: '56px' }}>
         <Grid container direction="row"
           justifyContent="center"
@@ -61,9 +58,9 @@ export default function Home() {
           ))}
         </Grid>
       </Container>
-      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0}}>
+      <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}>
         <BottomNavigation showLabels >
-          <BottomNavigationAction sx={{ backgroundColor: page === 1 ? '' : '#FF0000', color:  page === 1 ? 'lightgray' : 'white'}} label="previous" disabled={page === 1} onClick={() => setPage(prevPage => prevPage - 1)} icon={<NavigateBeforeIcon />} />
+          <BottomNavigationAction sx={{ backgroundColor: page === 1 ? '' : '#FF0000', color: page === 1 ? 'lightgray' : 'white' }} label="previous" disabled={page === 1} onClick={() => setPage(prevPage => prevPage - 1)} icon={<NavigateBeforeIcon />} />
           <BottomNavigationAction sx={{ backgroundColor: page !== totalPages ? '#FF0000' : '', color: page !== totalPages ? 'white' : 'lightgray' }} disabled={page === totalPages} onClick={() => setPage(prevPage => prevPage + 1)} label="Next" icon={<NavigateNextIcon />} />
         </BottomNavigation>
       </Paper>
