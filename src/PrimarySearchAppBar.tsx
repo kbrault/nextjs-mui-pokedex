@@ -1,14 +1,11 @@
-// SearchBar.tsx
-
 import { styled, alpha, createTheme, ThemeProvider } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import { useState } from 'react';
+
 
 interface SearchAppBarProps {
   handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -75,7 +72,7 @@ const SearchAppBar: React.FC<SearchAppBarProps> = ({ handleSearchChange }) => {
               noWrap
               component="div"
               sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
-              MUI
+              NEXTJS MATERIAL UI POKEDEX
             </Typography>
             <Search>
               <SearchIconWrapper>
@@ -84,7 +81,7 @@ const SearchAppBar: React.FC<SearchAppBarProps> = ({ handleSearchChange }) => {
               <StyledInputBase
                 placeholder="Search…"
                 inputProps={{ 'aria-label': 'search' }}
-                onChange={handleSearchChange} // Pass the handleSearchChange function to the input onChange event
+                onChange={handleSearchChange}
               />
             </Search>
           </Toolbar>

@@ -5,17 +5,21 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
 interface ActionAreaCardProps {
-  id: number; // Example type, replace with your actual type
-  name: string; // Example type, replace with your actual type
+  id: number; 
+  name: string;
 }
 
 const ActionAreaCard: React.FC<ActionAreaCardProps> = ({ id, name }) => {
+
+  const image = "pokemon/" + String(id).padStart(3, '0') + ".png";
   return (
-    <Card sx={{ maxWidth: 180, m: 1 }}>
+    <Card sx={{ maxWidth: 190, m: 1 }}>
       <CardActionArea>
         <CardMedia
+        sx={{backgroundColor:'#fcd7d7'}}
+          key={id}
           component="img"
-          image="avatar.png"
+          image={image}
           alt="green iguana"
         />
         <CardContent>
