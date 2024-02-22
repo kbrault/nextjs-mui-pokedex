@@ -13,7 +13,7 @@ const ActionAreaCard: React.FC<ActionAreaCardProps> = ({ id, name }) => {
 
   const image = "pokemon/" + String(id).padStart(3, '0') + ".png";
   return (
-    <Card sx={{ maxWidth: 190, m: 1 }}>
+    <Card sx={{ maxWidth: 140, width:140, height:200, maxHeight:200,  m: 1 }}>
       <CardActionArea>
         <CardMedia
         sx={{backgroundColor:'#fcd7d7'}}
