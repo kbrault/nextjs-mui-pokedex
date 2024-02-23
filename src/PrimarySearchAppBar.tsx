@@ -6,6 +6,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import Button from '@mui/material/Button';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 interface SearchAppBarProps {
   handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -14,9 +16,9 @@ interface SearchAppBarProps {
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.25),
+  backgroundColor: 'white',
   '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.3),
+    backgroundColor: '#e3e3e3',
   },
   marginLeft: 0,
   width: '100%',
@@ -34,10 +36,11 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  color: 'black',
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
+  color: 'black',
   width: '100%',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
@@ -69,6 +72,7 @@ const SearchAppBar: FC<SearchAppBarProps> = ({ handleSearchChange }) => {
             <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
               NEXTJS MATERIAL UI POKEDEX
             </Typography>
+            <Button variant="contained" color="success" href="https://github.com/kbrault/nextjs-mui-pokedex" startIcon={<GitHubIcon />}>Source</Button>
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />
