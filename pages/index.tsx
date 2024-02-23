@@ -6,14 +6,10 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-
-interface Book {
-  id: number;
-  name: string;
-}
+import { Pokemon } from '../src/Interfaces/Pokemon';
 
 export default function Home() {
-  const [books, setBooks] = useState<Book[]>([]);
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(41);
@@ -24,22 +20,22 @@ export default function Home() {
     setPage(1);
   };
 
-  const fetchBooks = async () => {
+  const fetchPokemons = async () => {
     setLoading(true);
     try {
-      const response = await axios.get<Book[]>('/api/books', {
+      const response = await axios.get<Pokemon[]>('/api/pokemons', {
         params: { search: searchTerm, page }
       });
-      setBooks(response.data);
+      setPokemons(response.data);
     } catch (error) {
-      console.error('Error fetching books:', error);
+      console.error('Error fetching pokemons:', error);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchBooks();
+    fetchPokemons();
   }, [searchTerm, page]);
 
   return (
@@ -52,9 +48,9 @@ export default function Home() {
           {loading ? ( 
             <CircularProgress size={100} sx={{ m: 10 }} /> 
           ) : (
-            books.map(book => (
-              <Grid key={book.id}>
-                <ActionAreaCard key={book.id} id={book.id} name={book.name} />
+            pokemons.map(pokemon => (
+              <Grid key={pokemon.id}>
+                <ActionAreaCard key={pokemon.id} id={pokemon.id} name={pokemon.name} type1={pokemon.type1} type2={pokemon.type2} />
               </Grid>
             ))
           )}
@@ -63,7 +59,7 @@ export default function Home() {
       <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}>
         <BottomNavigation showLabels >
           <BottomNavigationAction sx={{ backgroundColor: page === 1 ? '' : '#FF0000', color: page === 1 ? 'lightgray' : 'white' }} label="previous" disabled={page === 1} onClick={() => setPage(prevPage => prevPage - 1)} icon={<NavigateBeforeIcon />} />
-          <BottomNavigationAction sx={{ backgroundColor: page !== totalPages && books.length === 27 ? '#FF0000' : '', color: page !== totalPages ? 'white' : 'lightgray' }} disabled={page === totalPages || books.length !== 27} onClick={() => setPage(prevPage => prevPage + 1)} label="Next" icon={<NavigateNextIcon />} />
+          <BottomNavigationAction sx={{ backgroundColor: page !== totalPages && pokemons.length === 27 ? '#FF0000' : '', color: page !== totalPages ? 'white' : 'lightgray' }} disabled={page === totalPages || pokemons.length !== 27} onClick={() => setPage(prevPage => prevPage + 1)} label="Next" icon={<NavigateNextIcon />} />
         </BottomNavigation>
       </Paper>
     </>

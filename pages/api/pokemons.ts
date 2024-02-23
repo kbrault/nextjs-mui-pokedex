@@ -1,29 +1,25 @@
 import fs from 'fs';
 import path from 'path';
 import { NextApiRequest, NextApiResponse } from 'next';
-
-interface Book {
-  id: number;
-  name: string;
-}
+import { Pokemon } from '../../src/Interfaces/Pokemon';
 
 interface ErrorResponse {
   error: string;
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse<Book[] | ErrorResponse>) {
+export default function handler(req: NextApiRequest, res: NextApiResponse<Pokemon[] | ErrorResponse>) {
   if (req.method === 'GET') {
     try {
       const filePath = path.join(process.cwd(), 'data.json');
-      const booksData = fs.readFileSync(filePath, 'utf8');
-      const books: Book[] = JSON.parse(booksData);
+      const pokemonsData = fs.readFileSync(filePath, 'utf8');
+      const pokemons: Pokemon[] = JSON.parse(pokemonsData);
 
       const { search, page } = req.query;
-      let filteredBooks = books;
+      let filteredPokemons = pokemons;
       if (search) {
         const searchTerm = (search as string);
-        filteredBooks = filteredBooks.filter(book =>
-          book.name.toLowerCase().includes(searchTerm.toLowerCase())
+        filteredPokemons = filteredPokemons.filter(pokemons =>
+          pokemons.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
       }
 
@@ -31,12 +27,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Book[]
       const currentPage = page ? parseInt(page as string, 10) : 1;
       const startIndex = (currentPage - 1) * pageSize;
       const endIndex = startIndex + pageSize;
-      const paginatedBooks = filteredBooks.slice(startIndex, endIndex);
+      const paginatedPokemons = filteredPokemons.slice(startIndex, endIndex);
 
 
-      res.status(200).json(paginatedBooks);
+      res.status(200).json(paginatedPokemons);
     } catch (error) {
-      console.error('Error reading books data:', error);
+      console.error('Error reading pokemons data:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   } else {
