@@ -27,7 +27,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Book[]
         );
       }
 
-      const pageSize = 20; 
+      const pageSize = 27; 
       const currentPage = page ? parseInt(page as string, 10) : 1;
       const startIndex = (currentPage - 1) * pageSize;
       const endIndex = startIndex + pageSize;
