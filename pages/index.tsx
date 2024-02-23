@@ -59,7 +59,7 @@ export default function Home() {
       <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}>
         <BottomNavigation showLabels >
           <BottomNavigationAction sx={{ backgroundColor: page === 1 ? '' : '#FF0000', color: page === 1 ? 'lightgray' : 'white' }} label="previous" disabled={page === 1} onClick={() => setPage(prevPage => prevPage - 1)} icon={<NavigateBeforeIcon />} />
-          <BottomNavigationAction sx={{ backgroundColor: page !== totalPages && pokemons.length === 27 ? '#FF0000' : '', color: page !== totalPages ? 'white' : 'lightgray' }} disabled={page === totalPages || pokemons.length !== 27} onClick={() => setPage(prevPage => prevPage + 1)} label="Next" icon={<NavigateNextIcon />} />
+          <BottomNavigationAction sx={{ backgroundColor: page !== totalPages && pokemons.length === 27 ? '#FF0000' : '', color: page !== totalPages ? 'lightgray' : 'lightgray' }} disabled={page === totalPages || pokemons.length !== 27} onClick={() => setPage(prevPage => prevPage + 1)} label="Next" icon={<NavigateNextIcon />} />
         </BottomNavigation>
       </Paper>
     </>
