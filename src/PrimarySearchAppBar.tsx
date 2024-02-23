@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { styled, alpha, createTheme, ThemeProvider } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -5,7 +6,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-
 
 interface SearchAppBarProps {
   handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -41,7 +41,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   width: '100%',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     [theme.breakpoints.up('sm')]: {
@@ -53,7 +52,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const appBarColor = createTheme({
+const appBarTheme = createTheme({
   palette: {
     primary: {
       main: '#FF0000',
@@ -61,17 +60,13 @@ const appBarColor = createTheme({
   },
 });
 
-const SearchAppBar: React.FC<SearchAppBarProps> = ({ handleSearchChange }) => {
+const SearchAppBar: FC<SearchAppBarProps> = ({ handleSearchChange }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <ThemeProvider theme={appBarColor}>
+      <ThemeProvider theme={appBarTheme}>
         <AppBar position="static">
           <Toolbar variant='dense'>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
+            <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
               NEXTJS MATERIAL UI POKEDEX
             </Typography>
             <Search>

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Html, Head, Main, NextScript, DocumentProps, DocumentContext } from 'next/document';
 import {
   DocumentHeadTags,
