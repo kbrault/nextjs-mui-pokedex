@@ -22,12 +22,14 @@ const ActionAreaCard: FC<ActionAreaCardProps> = ({ id, name, type1, type2 }) => 
           key={id}
           component="img"
           image={image}
+          alt={name}
         />
         <CardContent>
           <Typography gutterBottom variant="h6" component="div">
             {name}
           </Typography>
-          <Typography sx={{ fontSize: 14, m: 0, textAlign: 'right' }} color="text.secondary" gutterBottom>
+          <Typography sx={{ fontSize: 14, m: 0, textAlign: 'left', float: 'left' }} color="text.secondary">#{id}</Typography>
+          <Typography sx={{ fontSize: 14, m: 0, textAlign: 'right',  float: 'right' }} color="text.secondary">
             <img src={type1image} alt={type1} />
             {type2image && <img src={type2image} alt={type2} />}
           </Typography>
